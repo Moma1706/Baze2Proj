@@ -55,7 +55,7 @@ namespace Baze2Proj.Repo
                 using (FudbalskiTurnirContainer _context = new FudbalskiTurnirContainer())
                 {
                     Igrac igrac = _context.Ucesniks_Igrac.Where(x => x.JMBG == id).FirstOrDefault();
-
+                    igrac.Tims.Clear();
                     _context.Ucesniks_Igrac.Remove(igrac);
                     _context.SaveChanges();
                 }

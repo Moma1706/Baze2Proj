@@ -76,7 +76,9 @@
     </ApplicationDefinition>
     <Compile Include="BindableBase.cs" />
     <Compile Include="Converters\NameConverter.cs" />
+    <Compile Include="Converters\NameTurnirCOnverter.cs" />
     <Compile Include="Converters\SponzorBoolConverter.cs" />
+    <Compile Include="Converters\TurnirBoolConverter.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="MyICommand.cs" />
     <Compile Include="Repo\IgracRepo.cs" />

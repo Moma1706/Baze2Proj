@@ -28,10 +28,8 @@ namespace Contract
         public virtual DbSet<Ucesnik> Ucesniks { get; set; }
         public virtual DbSet<Trener> Ucesniks_Trener { get; set; }
         public virtual DbSet<Igrac> Ucesniks_Igrac { get; set; }
-        public virtual DbSet<Sudija> Ucesniks_Sudija
-        {
-            get; set;
-        }
+        public virtual DbSet<Sudija> Ucesniks_Sudija { get; set; }
+
         public virtual DbSet<Tim> Tims { get; set; }
         public virtual DbSet<Sponzor> Sponzors { get; set; }
         public virtual DbSet<Turnir> Turnirs { get; set; }

@@ -32,6 +32,9 @@ namespace Baze2Proj.ViewModel
         private ICommand checkedCommand;
         private ICommand uncheckedCommand;
 
+        private ICommand checkedCommandTim;
+        private ICommand uncheckedCommandTim;
+
         public bool IsVisibleModifikuj { get => isVisibleModifikuj; set { isVisibleModifikuj = value; OnPropertyChanged("IsVisibleModifikuj"); } }
         public bool IsVisibleObrisi { get => isVisibleObrisi; set { isVisibleObrisi = value; OnPropertyChanged("IsVisibleObrisi"); } }
         public bool IsVisibleDodaj { get => isVisibleDodaj; set { isVisibleDodaj = value; OnPropertyChanged("IsVisibleDodaj"); } }
@@ -42,6 +45,7 @@ namespace Baze2Proj.ViewModel
         public BindingList<Turnir> Turniri { get => turniri; set { turniri = value; OnPropertyChanged("Turniri"); } }
 
         private Dictionary<string, bool> sponzorBool = new Dictionary<string, bool>();
+        private Dictionary<string, bool> timBool = new Dictionary<string, bool>();
         public List<string> TipTurnira { get => tipTurnira; set => tipTurnira = value; }
 
 
@@ -82,6 +86,7 @@ namespace Baze2Proj.ViewModel
                     IsVisibleStek = true;
                     Turnir = new Turnir();
                     SetSponzors();
+                    SetTimovi();
                     break;
                 case "obrisi":
                     IsVisibleDodaj = false;
@@ -113,6 +118,14 @@ namespace Baze2Proj.ViewModel
             foreach (var item in sponzori)
                 SponzoriBool.Add(item.Naziv, false);
         }
+        private void SetTimovi()
+        {
+            TimoviBool.Clear();
+
+            var sponzori = _repo.GetAllTimovi();
+            foreach (var item in sponzori)
+                TimoviBool.Add(item.IdTima.ToString(), false);
+        }
 
         public BindingList<Turnir> GetAllTurniri()
         {
@@ -123,6 +136,7 @@ namespace Baze2Proj.ViewModel
 
         public void OnDodaj()
         {
+            List<Tim> timovi = new List<Tim>();
             foreach (var item in SponzoriBool)
             {
                 if (item.Value)
@@ -131,8 +145,16 @@ namespace Baze2Proj.ViewModel
                     turnirMD.Sponzors.Add(spozor);
                 }
             }
+            foreach (var item in TimoviBool)
+            {
+                if (item.Value)
+                {
+                    var tim = _repo.GetAllTimovi().FirstOrDefault(x => x.IdTima == Int32.Parse(item.Key));
+                    timovi.Add(tim);
+                }
+            }
 
-            _repo.AddTurnir(TurnirMD);
+            _repo.AddTurnir(TurnirMD, timovi);
 
             TurnirMD = new Turnir();
             Turniri = GetAllTurniri();
@@ -174,5 +196,23 @@ namespace Baze2Proj.ViewModel
         }
 
         #endregion
+
+        public Dictionary<string, bool> TimoviBool { get => timBool; set => timBool = value; }
+
+        public ICommand CheckedCommandTim => checkedCommandTim ?? (checkedCommand = new MyICommand<KeyValuePair<string, bool>>(CheckedCommandTimExecute));
+
+        public ICommand UncheckedCommandTim => uncheckedCommandTim ?? (uncheckedCommand = new MyICommand<KeyValuePair<string, bool>>(UncheckedCommandTimExecute));
+
+
+        private void CheckedCommandTimExecute(KeyValuePair<string, bool> name)
+        {
+            TimoviBool[name.Key] = true;
+            OnPropertyChanged("TimoviBool");
+        }
+        private void UncheckedCommandTimExecute(KeyValuePair<string, bool> name)
+        {
+            TimoviBool[name.Key] = false;
+            OnPropertyChanged("TimoviBool");
+        }
     }
 }

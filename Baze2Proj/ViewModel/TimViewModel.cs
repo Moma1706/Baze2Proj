@@ -67,6 +67,15 @@ namespace Baze2Proj.ViewModel
         }
         public void OnDodaj()
         {
+            foreach (var item in IgraciBool)
+            {
+                if (item.Value)
+                {
+                    var igrac = _repo.GetAllIgraci().FirstOrDefault(x => x.Ime == item.Key);
+                    TimMD.Igracs.Add(igrac);
+
+                }
+            }
             _repo.AddTim(TimMD);
 
             TimMD = new Tim();

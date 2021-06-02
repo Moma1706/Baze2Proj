@@ -46,7 +46,35 @@
                 </i:Interaction.Triggers>
             </CheckBox>
         </DataTemplate>
-        
+
+        <DataTemplate x:Key="CheckBoxNameTim">
+            <CheckBox>
+                <CheckBox.Content>
+                    <MultiBinding Converter="{StaticResource NameConverter}">
+                        <Binding ></Binding>
+                        <Binding Path="DataContext.Tim" RelativeSource="{RelativeSource AncestorType={x:Type root:MainWindow}}"></Binding>
+                    </MultiBinding>
+                </CheckBox.Content>
+
+                <CheckBox.IsChecked>
+                    <MultiBinding Converter="{StaticResource SponzorBoolConverter}" Mode="OneWay">
+                        <Binding Path="DataContext.TimoviBool" RelativeSource="{RelativeSource AncestorType=UserControl}"></Binding>
+                        <Binding Mode="TwoWay"></Binding>
+                    </MultiBinding>
+                </CheckBox.IsChecked>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.CheckedCommandTim,RelativeSource={RelativeSource AncestorType=UserControl}}"
+											   CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.UncheckedCommandTim,RelativeSource={RelativeSource AncestorType=UserControl}}"
+											   CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
+        </DataTemplate>
+
     </UserControl.Resources>
     <Grid>
         <DataGrid x:Name="dgridIgrac" HorizontalAlignment="Left"  VerticalAlignment="Top"
@@ -81,6 +109,13 @@
                 <Grid>
                     <ScrollViewer>
                         <ItemsControl ItemsSource="{Binding SponzoriBool}" ItemTemplate="{StaticResource CheckBoxName}"/>
+                    </ScrollViewer>
+                </Grid>
+            </GroupBox>
+            <GroupBox>
+                <Grid>
+                    <ScrollViewer>
+                        <ItemsControl ItemsSource="{Binding TimoviBool}" ItemTemplate="{StaticResource CheckBoxNameTim}"/>
                     </ScrollViewer>
                 </Grid>
             </GroupBox>

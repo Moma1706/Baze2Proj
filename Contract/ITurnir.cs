@@ -10,7 +10,7 @@ namespace Contract
     public interface ITurnir
     {
         BindingList<Turnir> GetAllTurniri();
-        void AddTurnir(Turnir turnir);
+        void AddTurnir(Turnir turnir, List<Tim> timovi);
         void EditTurnir(Turnir turnir);
         void DeleteTurnir(long id);
         BindingList<Sponzor> GetAllSponzori();

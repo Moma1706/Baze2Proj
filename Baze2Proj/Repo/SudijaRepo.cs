@@ -56,7 +56,7 @@ namespace Baze2Proj.Repo
             }
             catch (Exception e)
             {
-                MessageBox.Show("Nije uspelo brisanje igraca!");
+                MessageBox.Show("Zabranjeno brisanje sudije, kako se ne bi obrisao postojeci mec!");
                 throw;
             }
         }

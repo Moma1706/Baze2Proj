@@ -39,13 +39,18 @@ namespace Baze2Proj.Repo
         {
             try
             {
-                if (id == null)
+                if (id == 0)
                 {
                     MessageBox.Show("Nije selektovan igrac!");
                     return;
                 }
                 
                 Sponzor sponzor = _context.Sponzors.Where(x => x.IdSponzora == id).FirstOrDefault();
+                var list = _context.Turnirs.Where(x => x.Sponzors.All(y=>y.IdSponzora == sponzor.IdSponzora));
+                foreach (var item in list)
+                {
+                    sponzor.Turnirs.Remove(item);
+                }
 
                 _context.Sponzors.Remove(sponzor);
                 _context.SaveChanges();

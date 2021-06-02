@@ -10,8 +10,11 @@ namespace Contract
     public interface IMec
     {
         BindingList<Mec> GetAllMecevi();
+        BindingList<Sudija> GetAllSudije();
+        BindingList<Statistika> GetAllStatistike();
+        BindingList<Teren> GetAllTereni();
         void AddMec(Mec mec);
         void EditMec(Mec mec);
-        void DeleteMec(long id);
+        void DeleteMec(int id);
     }
 }

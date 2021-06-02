@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Baze2Proj.View"
-            xmlns:viewModel="clr-namespace:Baze2Proj.ViewModel"
-
+             xmlns:viewModel="clr-namespace:Baze2Proj.ViewModel" 
+             xmlns:converters="clr-namespace:Baze2Proj.Converters" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:root ="clr-namespace:Baze2Proj"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
@@ -13,6 +15,123 @@
     </UserControl.DataContext>
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <converters:SponzorBoolConverter x:Key="SponzorBoolConverter"/>
+        <converters:TurnirBoolConverter x:Key="TurnirBoolConverter"/>
+        <converters:NameConverter x:Key="NameConverter"/>
+        <converters:NameTurnirCOnverter x:Key="NameTurnirCOnverter"/>
+
+        <DataTemplate x:Key="CheckBoxName">
+            <CheckBox>
+                <CheckBox.Content>
+                    <MultiBinding Converter="{StaticResource NameConverter}">
+                        <Binding ></Binding>
+                        <Binding Path="DataContext.Sudija" RelativeSource="{RelativeSource AncestorType={x:Type root:MainWindow}}"></Binding>
+                    </MultiBinding>
+                </CheckBox.Content>
+
+                <CheckBox.IsChecked>
+                    <MultiBinding Converter="{StaticResource SponzorBoolConverter}" Mode="OneWay">
+                        <Binding Path="DataContext.SudijeBool" RelativeSource="{RelativeSource AncestorType=UserControl}"></Binding>
+                        <Binding Mode="TwoWay"></Binding>
+                    </MultiBinding>
+                </CheckBox.IsChecked>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.CheckedCommand,RelativeSource={RelativeSource AncestorType=UserControl}}"
+											   CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.UncheckedCommand,RelativeSource={RelativeSource AncestorType=UserControl}}"
+											   CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CheckBoxNameTurnir">
+            <CheckBox>
+                <CheckBox.Content>
+                    <MultiBinding Converter="{StaticResource NameTurnirCOnverter}">
+                        <Binding ></Binding>
+                        <Binding Path="DataContext.Turnir" RelativeSource="{RelativeSource AncestorType={x:Type root:MainWindow}}"></Binding>
+                    </MultiBinding>
+                </CheckBox.Content>
+
+                <CheckBox.IsChecked>
+                    <MultiBinding Converter="{StaticResource TurnirBoolConverter}" Mode="OneWay">
+                        <Binding Path="DataContext.TurniriBool" RelativeSource="{RelativeSource AncestorType=UserControl}"></Binding>
+                        <Binding Mode="TwoWay"></Binding>
+                    </MultiBinding>
+                </CheckBox.IsChecked>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.CheckedCommandTurnir,RelativeSource={RelativeSource AncestorType=UserControl}}"
+											   CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.UncheckedCommandTurnir,RelativeSource={RelativeSource AncestorType=UserControl}}"
+											   CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CheckBoxNameTeren">
+            <CheckBox>
+                <CheckBox.Content>
+                    <MultiBinding Converter="{StaticResource NameTurnirCOnverter}">
+                        <Binding ></Binding>
+                        <Binding Path="DataContext.Teren" RelativeSource="{RelativeSource AncestorType={x:Type root:MainWindow}}"></Binding>
+                    </MultiBinding>
+                </CheckBox.Content>
+
+                <CheckBox.IsChecked>
+                    <MultiBinding Converter="{StaticResource TurnirBoolConverter}" Mode="OneWay">
+                        <Binding Path="DataContext.TereniBool" RelativeSource="{RelativeSource AncestorType=UserControl}"></Binding>
+                        <Binding Mode="TwoWay"></Binding>
+                    </MultiBinding>
+                </CheckBox.IsChecked>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.CheckedCommandTeren,RelativeSource={RelativeSource AncestorType=UserControl}}"
+											   CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.UncheckedCommandTeren,RelativeSource={RelativeSource AncestorType=UserControl}}"
+											   CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CheckBoxNameStatistika">
+            <CheckBox>
+                <CheckBox.Content>
+                    <MultiBinding Converter="{StaticResource NameTurnirCOnverter}">
+                        <Binding ></Binding>
+                        <Binding Path="DataContext.Statistika" RelativeSource="{RelativeSource AncestorType={x:Type root:MainWindow}}"></Binding>
+                    </MultiBinding>
+                </CheckBox.Content>
+
+                <CheckBox.IsChecked>
+                    <MultiBinding Converter="{StaticResource TurnirBoolConverter}" Mode="OneWay">
+                        <Binding Path="DataContext.StatistikeBool" RelativeSource="{RelativeSource AncestorType=UserControl}"></Binding>
+                        <Binding Mode="TwoWay"></Binding>
+                    </MultiBinding>
+                </CheckBox.IsChecked>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.CheckedCommandStatistika,RelativeSource={RelativeSource AncestorType=UserControl}}"
+											   CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.UncheckedCommandStatistika,RelativeSource={RelativeSource AncestorType=UserControl}}"
+											   CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
+        </DataTemplate>
+
     </UserControl.Resources>
     <Grid>
         <DataGrid x:Name="dgridIgrac" HorizontalAlignment="Left"  VerticalAlignment="Top"
@@ -38,6 +157,56 @@
             <TextBox Text="{Binding MecMD.Kolo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock Text="Rezultat:" />
             <TextBox Text="{Binding MecMD.Rezultat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Sudije:" />
+            <!--<GroupBox>
+                <Grid>
+                    <ScrollViewer>
+                        <ItemsControl ItemsSource="{Binding SudijeBool}" ItemTemplate="{StaticResource CheckBoxName}"/>
+                    </ScrollViewer>
+                </Grid>
+            </GroupBox>-->
+            <StackPanel Orientation="Vertical">
+
+                <ComboBox ItemsSource="{Binding Path=ListSudije}" SelectedItem="{Binding Path=SelectedSudija}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Ime"/>
+                                        <Binding Path="Prezime"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <TextBlock Text="Turniri:" />
+            <GroupBox>
+                <Grid>
+                    <ScrollViewer>
+                        <ItemsControl ItemsSource="{Binding TurniriBool}" ItemTemplate="{StaticResource CheckBoxNameTurnir}"/>
+                    </ScrollViewer>
+                </Grid>
+            </GroupBox>
+            <TextBlock Text="Tereni:" />
+            <GroupBox>
+                <Grid>
+                    <ScrollViewer>
+                        <ItemsControl ItemsSource="{Binding TereniBool}" ItemTemplate="{StaticResource CheckBoxNameTeren}"/>
+                    </ScrollViewer>
+                </Grid>
+            </GroupBox>
+            <TextBlock Text="Statistika:" />
+            <GroupBox>
+                <Grid>
+                    <ScrollViewer>
+                        <ItemsControl ItemsSource="{Binding StatistikeBool}" ItemTemplate="{StaticResource CheckBoxNameStatistika}"/>
+                    </ScrollViewer>
+                </Grid>
+            </GroupBox>
+
         </StackPanel>
         <StackPanel Margin="719,500,10,10">
             <Button Content="Dodaj" Visibility="{Binding Path=IsVisibleDodaj, Converter={StaticResource BoolToVis}}" Command="{Binding DodajCommand}" VerticalAlignment="Bottom" Width="100" />

@@ -25,24 +25,64 @@ namespace Baze2Proj.Repo
 
                 if (success > 0)
                 {
-                    MessageBox.Show("Uspesno dodat Turnir!");
+                    MessageBox.Show("Uspesno dodat Tim!");
                 }
 
             }
             catch (Exception e)
             {
-                MessageBox.Show("Dodavanje igraca nije uspelo!");
+                MessageBox.Show("Dodavanje Tima nije uspelo!");
             }
         }
 
         public void DeleteTim(long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (id == 0)
+                {
+                    MessageBox.Show("Nije selektovan Tim!");
+                    return;
+                }
+
+                Tim tim = _context.Tims.Where(x => x.IdTima == id).FirstOrDefault();
+                
+                _context.Tims.Remove(tim);
+                _context.SaveChanges();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Zabranjeno brisanje tima, koji je prijavljen na turnir za vec odigrani mec!");
+                throw;
+            }
         }
 
         public void EditTim(Tim tim)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (tim == null)
+                {
+                    MessageBox.Show("Nije selektovan Tim!");
+                    return;
+                }
+
+                Tim timForChange = _context.Tims.FirstOrDefault(x => x.IdTima == tim.IdTima);
+
+                timForChange.BrojTitula = tim.BrojTitula;
+                timForChange.DatumOsnivanja = tim.DatumOsnivanja;
+                timForChange.Tip = tim.Tip;
+
+                _context.Entry(timForChange).State = System.Data.Entity.EntityState.Modified;
+                _context.SaveChanges();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Nije uspela promena Tima");
+                throw;
+            }
         }
 
         public BindingList<Tim> GetAllTimovi()

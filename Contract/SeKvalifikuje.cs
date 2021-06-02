@@ -19,7 +19,13 @@ namespace Contract
         {
             this.Mecs = new HashSet<Mec>();
         }
-    
+
+        public SeKvalifikuje(int turnirIdTurnira, int timIdTima)
+        {
+            TurnirIdTurnira = turnirIdTurnira;
+            TimIdTima = timIdTima;
+        }
+
         public int TurnirIdTurnira { get; set; }
         public int TimIdTima { get; set; }
     
