@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2ebdabe6d0e8479fa9c61b10b24799e6" Name="Diagram1" ZoomLevel="77" >
+        <EntityTypeShape EntityType="FudbalskiTurnir.Ucesnik" Width="1.5" PointX="7.125" PointY="0.75" />
+        <EntityTypeShape EntityType="FudbalskiTurnir.Trener" Width="1.5" PointX="7.125" PointY="3.875" />
+        <EntityTypeShape EntityType="FudbalskiTurnir.Igrac" Width="1.5" PointX="9.625" PointY="3.875" />
+        <EntityTypeShape EntityType="FudbalskiTurnir.Tim" Width="1.5" PointX="8.625" PointY="7.75" />
+        <EntityTypeShape EntityType="FudbalskiTurnir.Sudija" Width="1.5" PointX="4.875" PointY="3.875" />
+        <EntityTypeShape EntityType="FudbalskiTurnir.Sponzor" Width="1.5" PointX="8.625" PointY="11.375" />
+        <EntityTypeShape EntityType="FudbalskiTurnir.Turnir" Width="1.5" PointX="11.625" PointY="11.125" />
+        <EntityTypeShape EntityType="FudbalskiTurnir.Mec" Width="1.5" PointX="16.5" PointY="8.375" />
+        <EntityTypeShape EntityType="FudbalskiTurnir.Teren" Width="1.5" PointX="20.25" PointY="8.625" />
+        <EntityTypeShape EntityType="FudbalskiTurnir.Statistika" Width="1.5" PointX="16.25" PointY="4.875" />
+        <EntityTypeShape EntityType="FudbalskiTurnir.SePrijavljuje" Width="1.5" PointX="13.25" PointY="5.375" />
+        <EntityTypeShape EntityType="FudbalskiTurnir.SeKvalifikuje" Width="1.5" PointX="11.625" PointY="7.875" />
+        <AssociationConnector Association="FudbalskiTurnir.StatistikaMec" />
+        <InheritanceConnector EntityType="FudbalskiTurnir.Sudija" ManuallyRouted="true" >
+          <ConnectorPoint PointX="7.875" PointY="2.922587890625" />
+          <ConnectorPoint PointX="7.875" PointY="3.5" />
+          <ConnectorPoint PointX="5.625" PointY="3.5" />
+          <ConnectorPoint PointX="5.625" PointY="3.875" />
+        </InheritanceConnector>
+        <InheritanceConnector EntityType="FudbalskiTurnir.Trener" />
+        <InheritanceConnector EntityType="FudbalskiTurnir.Igrac" />
+        <AssociationConnector Association="FudbalskiTurnir.TrenerTim" />
+        <AssociationConnector Association="FudbalskiTurnir.MecTeren" />
+        <AssociationConnector Association="FudbalskiTurnir.SePrijavljujeTurnir" />
+        <AssociationConnector Association="FudbalskiTurnir.TurnirSeKvalifikuje" />
+        <AssociationConnector Association="FudbalskiTurnir.TimSeKvalifikuje" />
+        <AssociationConnector Association="FudbalskiTurnir.SudijaSePrijavljuje" />
+        <AssociationConnector Association="FudbalskiTurnir.SePrijavljujeMec" />
+        <AssociationConnector Association="FudbalskiTurnir.SponzorTurnir" />
+        <AssociationConnector Association="FudbalskiTurnir.SeKvalifikujeMec" />
+        <AssociationConnector Association="FudbalskiTurnir.IgracTim" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

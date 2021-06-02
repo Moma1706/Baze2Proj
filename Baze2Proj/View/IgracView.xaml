@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="Baze2Proj.View.IgracView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Baze2Proj.View"
+             xmlns:viewModel="clr-namespace:Baze2Proj.ViewModel"
+             xmlns:vml="clr-namespace:Baze2Proj.VML"
+             vml:ViewModelLocator.AutoHookedUpViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1500">
+    <UserControl.DataContext>
+        <viewModel:IgracViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid x:Name="dgridIgrac" HorizontalAlignment="Left"  VerticalAlignment="Top"
+                  ItemsSource="{Binding Igraci}" AutoGenerateColumns="false" IsReadOnly="True" SelectedItem="{Binding SelectedIgrac}" HorizontalContentAlignment="Center" Height="490" Width="714"
+                  ScrollViewer.CanContentScroll="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=JMBG}" Header="JMBG" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Ime}" Header="Ime" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Prezime}" Header="Prezime" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Drzava}" Header="Drzava" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=DatumRodjenja}" Header="DatumRodjenja" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Zarada}" Header="Zarada" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Pozicija}" Header="Pozicija" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=BrojGolova}" Header="Broj Golova" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Visina}" Header="Visina" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Margin="800,10,200,450">   
+            <RadioButton GroupName="Grupa" Content="Dodaj" IsChecked="False" Command="{Binding NavCommand}" CommandParameter="dodaj"/>
+            <RadioButton GroupName="Grupa" Content="Modifikuj" IsChecked="False" Command="{Binding NavCommand}" CommandParameter="modifikuj"/>
+            <RadioButton GroupName="Grupa" Content="Obrisi" IsChecked="False" Command="{Binding NavCommand}" CommandParameter="obrisi"/>
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding Path=IsVisibleStek, Converter={StaticResource BoolToVis}}" Margin="731,100,10,273">
+            <TextBlock Text="JMBG:" />
+            <TextBox Text="{Binding IgracMD.JMBG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Ime:" />
+            <TextBox Text="{Binding IgracMD.Ime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Prezime:" />
+            <TextBox Text="{Binding IgracMD.Prezime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Drzava:" />
+            <TextBox Text="{Binding IgracMD.Drzava, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Datum Rodjenja:" />
+            <TextBox Text="{Binding IgracMD.DatumRodjenja, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Zarada:" />
+            <TextBox Text="{Binding IgracMD.Zarada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Pozicija:" />
+            <TextBox Text="{Binding IgracMD.Pozicija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Broj Golova:" />
+            <TextBox Text="{Binding IgracMD.BrojGolova, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Visina:" />
+            <TextBox Text="{Binding IgracMD.Visina, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+
+        <StackPanel Margin="719,500,10,10">
+            <Button Content="Dodaj" Visibility="{Binding Path=IsVisibleDodaj, Converter={StaticResource BoolToVis}}" Command="{Binding DodajCommand}" VerticalAlignment="Bottom" Width="100" />
+            <Button Content="Modifikuj" Visibility="{Binding Path=IsVisibleModifikuj, Converter={StaticResource BoolToVis}}"  Command="{Binding ModifikujCommand}"  VerticalAlignment="Bottom" Width="100" />
+            <Button Content="Obrisi" Visibility="{Binding Path=IsVisibleObrisi, Converter={StaticResource BoolToVis}}"  Command="{Binding ObrisiCommand}" VerticalAlignment="Bottom" Width="100"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

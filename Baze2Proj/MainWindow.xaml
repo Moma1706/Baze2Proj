@@ -1,0 +1,97 @@
+﻿<Controls:MetroWindow x:Class="Baze2Proj.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:Baze2Proj"
+        xmlns:views="clr-namespace:Baze2Proj.View"
+        xmlns:viewModel="clr-namespace:Baze2Proj.ViewModel"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        mc:Ignorable="d"
+        Title="Fudbalski Turnir" Height="600" Width="1500">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:IgracViewModel}">
+                <views:IgracView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MecViewModel}">
+                <views:MecView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SponzorViewModel}">
+                <views:SponzorView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:StatistikaViewModel}">
+                <views:StatistikaView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SudijaViewModel}">
+                <views:SudiijaView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:TerenViewModel}">
+                <views:TerenView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:TimViewModel}">
+                <views:TimView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:TrenerViewModel}">
+                <views:TrenerView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:TurnirViewModel}">
+                <views:TurnirView/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="5">
+            <Menu Name="Menu1"  DockPanel.Dock="Top" Height="40" FontSize="20">
+                <MenuItem Name="Igrac" Header="Igrac"  Command="{Binding NavCommand}" CommandParameter="igrac">
+
+                </MenuItem>
+                <MenuItem Header="Mec" Command="{Binding NavCommand}" CommandParameter="mec">
+
+                </MenuItem>
+                <MenuItem Header="Sponzor" Command="{Binding NavCommand}" CommandParameter="sponzor">
+
+                </MenuItem>
+                <MenuItem Header="Statistika" Command="{Binding NavCommand}"  CommandParameter="statistika">
+
+                </MenuItem>
+                <MenuItem Header="Sudija" Command="{Binding NavCommand}"  CommandParameter="sudija">
+
+                </MenuItem>
+                <MenuItem Header="Teren" Command="{Binding NavCommand}"  CommandParameter="teren">
+
+                </MenuItem>
+                <MenuItem Header="Tim" Command="{Binding NavCommand}"  CommandParameter="tim">
+
+                </MenuItem>
+                <MenuItem Header="Trener" Command="{Binding NavCommand}"  CommandParameter="trener">
+
+                </MenuItem>
+                <MenuItem Header="Turnir" Command="{Binding NavCommand}"  CommandParameter="turnir">
+
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Grid Grid.Row="1" >
+            <ContentControl Content="{Binding CurrentViewModel}"  />
+        </Grid>
+    </Grid>
+</Controls:MetroWindow>

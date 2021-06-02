@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="Baze2Proj.View.TurnirView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Baze2Proj.View"
+             xmlns:viewModel="clr-namespace:Baze2Proj.ViewModel" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" 
+             xmlns:root ="clr-namespace:Baze2Proj"
+             xmlns:converters="clr-namespace:Baze2Proj.Converters"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewModel:TurnirViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <converters:SponzorBoolConverter x:Key="SponzorBoolConverter"/>
+        <converters:NameConverter x:Key="NameConverter"/>
+
+
+        <DataTemplate x:Key="CheckBoxName">
+            <CheckBox>
+                <CheckBox.Content>
+                    <MultiBinding Converter="{StaticResource NameConverter}">
+                        <Binding ></Binding>
+                        <Binding Path="DataContext.Sponzor" RelativeSource="{RelativeSource AncestorType={x:Type root:MainWindow}}"></Binding>
+                    </MultiBinding>
+                </CheckBox.Content>
+
+                <CheckBox.IsChecked>
+                    <MultiBinding Converter="{StaticResource SponzorBoolConverter}" Mode="OneWay">
+                        <Binding Path="DataContext.SponzoriBool" RelativeSource="{RelativeSource AncestorType=UserControl}"></Binding>
+                        <Binding Mode="TwoWay"></Binding>
+                    </MultiBinding>
+                </CheckBox.IsChecked>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Checked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.CheckedCommand,RelativeSource={RelativeSource AncestorType=UserControl}}"
+											   CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Unchecked">
+                        <i:InvokeCommandAction Command="{Binding DataContext.UncheckedCommand,RelativeSource={RelativeSource AncestorType=UserControl}}"
+											   CommandParameter="{Binding }"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CheckBox>
+        </DataTemplate>
+        
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid x:Name="dgridIgrac" HorizontalAlignment="Left"  VerticalAlignment="Top"
+                  ItemsSource="{Binding Turniri}" AutoGenerateColumns="false" IsReadOnly="True" SelectedItem="{Binding SelectedTurnir}" HorizontalContentAlignment="Center" Height="490" Width="714"
+                  ScrollViewer.CanContentScroll="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=IdTurnira}" Header="Id" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Tip}" Header="Tip" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=TrenutniSampion}" Header="TrenutniSampion" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Naziv}" Header="Naziv" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=DatumOsnivanja}" Header="DatumOsnivanja" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Margin="800,10,200,450">
+            <RadioButton GroupName="Grupa" Content="Dodaj" IsChecked="False" Command="{Binding NavCommand}" CommandParameter="dodaj"/>
+            <RadioButton GroupName="Grupa" Content="Modifikuj" IsChecked="False" Command="{Binding NavCommand}" CommandParameter="modifikuj"/>
+            <RadioButton GroupName="Grupa" Content="Obrisi" IsChecked="False" Command="{Binding NavCommand}" CommandParameter="obrisi"/>
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding Path=IsVisibleStek, Converter={StaticResource BoolToVis}}" Margin="731,100,10,273">
+            <TextBlock Text="DatumOsnivanja:" />
+            <TextBox Text="{Binding TurnirMD.DatumOsnivanja, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Naziv:" />
+            <TextBox Text="{Binding TurnirMD.Naziv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="TrenutniSampion:" />
+            <TextBox Text="{Binding TurnirMD.TrenutniSampion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Tip:" />
+            <ComboBox SelectedValue="{Binding TurnirMD.Tip, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding TipTurnira}" />
+
+            <TextBlock Text="Sponzori:" />
+            <GroupBox>
+                <Grid>
+                    <ScrollViewer>
+                        <ItemsControl ItemsSource="{Binding SponzoriBool}" ItemTemplate="{StaticResource CheckBoxName}"/>
+                    </ScrollViewer>
+                </Grid>
+            </GroupBox>
+
+        </StackPanel>
+        <StackPanel Margin="719,500,10,10">
+            <Button Content="Dodaj" Visibility="{Binding Path=IsVisibleDodaj, Converter={StaticResource BoolToVis}}" Command="{Binding DodajCommand}" VerticalAlignment="Bottom" Width="100" />
+            <Button Content="Modifikuj" Visibility="{Binding Path=IsVisibleModifikuj, Converter={StaticResource BoolToVis}}"  Command="{Binding ModifikujCommand}"  VerticalAlignment="Bottom" Width="100" />
+            <Button Content="Obrisi" Visibility="{Binding Path=IsVisibleObrisi, Converter={StaticResource BoolToVis}}"  Command="{Binding ObrisiCommand}" VerticalAlignment="Bottom" Width="100"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

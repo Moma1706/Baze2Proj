@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Baze2Proj.View.SudiijaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:Baze2Proj.ViewModel"
+             xmlns:local="clr-namespace:Baze2Proj.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewModel:SudijaViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid x:Name="dgridIgrac" HorizontalAlignment="Left"  VerticalAlignment="Top"
+                  ItemsSource="{Binding Sudije}" AutoGenerateColumns="false" IsReadOnly="True" SelectedItem="{Binding SelectedSudija}" HorizontalContentAlignment="Center" Height="490" Width="714"
+                  ScrollViewer.CanContentScroll="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=JMBG}" Header="JMBG" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Ime}" Header="Ime" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Prezime}" Header="Prezime" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Drzava}" Header="Drzava" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=DatumRodjenja}" Header="DatumRodjenja" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Zarada}" Header="Zarada" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=BrojUtakmica}" Header="BrojUtakmica" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Tip}" Header="Tip" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Margin="800,10,200,450">
+            <RadioButton GroupName="Grupa" Content="Dodaj" IsChecked="False" Command="{Binding NavCommand}" CommandParameter="dodaj"/>
+            <RadioButton GroupName="Grupa" Content="Modifikuj" IsChecked="False" Command="{Binding NavCommand}" CommandParameter="modifikuj"/>
+            <RadioButton GroupName="Grupa" Content="Obrisi" IsChecked="False" Command="{Binding NavCommand}" CommandParameter="obrisi"/>
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding Path=IsVisibleStek, Converter={StaticResource BoolToVis}}" Margin="731,100,10,273">
+            <TextBlock Text="JMBG:" />
+            <TextBox Text="{Binding SudijaMD.JMBG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Ime:" />
+            <TextBox Text="{Binding SudijaMD.Ime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Prezime:" />
+            <TextBox Text="{Binding SudijaMD.Prezime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Drzava:" />
+            <TextBox Text="{Binding SudijaMD.Drzava, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Datum Rodjenja:" />
+            <TextBox Text="{Binding SudijaMD.DatumRodjenja, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Zarada:" />
+            <TextBox Text="{Binding SudijaMD.Zarada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="BrojUtakmica:" />
+            <TextBox Text="{Binding SudijaMD.BrojUtakmica, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Tip:" />
+            <TextBox Text="{Binding SudijaMD.Tip, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+
+        <StackPanel Margin="719,500,10,10">
+            <Button Content="Dodaj" Visibility="{Binding Path=IsVisibleDodaj, Converter={StaticResource BoolToVis}}" Command="{Binding DodajCommand}" VerticalAlignment="Bottom" Width="100" />
+            <Button Content="Modifikuj" Visibility="{Binding Path=IsVisibleModifikuj, Converter={StaticResource BoolToVis}}"  Command="{Binding ModifikujCommand}"  VerticalAlignment="Bottom" Width="100" />
+            <Button Content="Obrisi" Visibility="{Binding Path=IsVisibleObrisi, Converter={StaticResource BoolToVis}}"  Command="{Binding ObrisiCommand}" VerticalAlignment="Bottom" Width="100"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

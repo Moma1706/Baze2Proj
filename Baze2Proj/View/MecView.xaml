@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Baze2Proj.View.MecView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Baze2Proj.View"
+            xmlns:viewModel="clr-namespace:Baze2Proj.ViewModel"
+
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewModel:MecViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid x:Name="dgridIgrac" HorizontalAlignment="Left"  VerticalAlignment="Top"
+                  ItemsSource="{Binding Mecevi}" AutoGenerateColumns="false" IsReadOnly="True" SelectedItem="{Binding SelectedMec}" HorizontalContentAlignment="Center" Height="490" Width="714"
+                  ScrollViewer.CanContentScroll="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=IdMeca}" Header="Id" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=DatumOdrzavanja}" Header="DatumOdrzavanja" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Kolo}" Header="Kolo" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Rezultat}" Header="Rezultat" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Margin="800,10,200,450">
+            <RadioButton GroupName="Grupa" Content="Dodaj" IsChecked="False" Command="{Binding NavCommand}" CommandParameter="dodaj"/>
+            <RadioButton GroupName="Grupa" Content="Modifikuj" IsChecked="False" Command="{Binding NavCommand}" CommandParameter="modifikuj"/>
+            <RadioButton GroupName="Grupa" Content="Obrisi" IsChecked="False" Command="{Binding NavCommand}" CommandParameter="obrisi"/>
+        </StackPanel>
+
+        <StackPanel Visibility="{Binding Path=IsVisibleStek, Converter={StaticResource BoolToVis}}" Margin="731,100,10,273">
+            <TextBlock Text="Datum:" />
+            <TextBox Text="{Binding MecMD.DatumOdrzavanja, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Kolo:" />
+            <TextBox Text="{Binding MecMD.Kolo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Rezultat:" />
+            <TextBox Text="{Binding MecMD.Rezultat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+        <StackPanel Margin="719,500,10,10">
+            <Button Content="Dodaj" Visibility="{Binding Path=IsVisibleDodaj, Converter={StaticResource BoolToVis}}" Command="{Binding DodajCommand}" VerticalAlignment="Bottom" Width="100" />
+            <Button Content="Modifikuj" Visibility="{Binding Path=IsVisibleModifikuj, Converter={StaticResource BoolToVis}}"  Command="{Binding ModifikujCommand}"  VerticalAlignment="Bottom" Width="100" />
+            <Button Content="Obrisi" Visibility="{Binding Path=IsVisibleObrisi, Converter={StaticResource BoolToVis}}"  Command="{Binding ObrisiCommand}" VerticalAlignment="Bottom" Width="100"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

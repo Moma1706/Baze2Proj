@@ -1,0 +1,932 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FudbalskiTurnir.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="FudbalskiTurnirStoreContainer">
+    <EntitySet Name="Ucesniks" EntityType="FudbalskiTurnir.Store.Ucesniks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tims" EntityType="FudbalskiTurnir.Store.Tims" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sponzors" EntityType="FudbalskiTurnir.Store.Sponzors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Turnirs" EntityType="FudbalskiTurnir.Store.Turnirs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Mecs" EntityType="FudbalskiTurnir.Store.Mecs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Terens" EntityType="FudbalskiTurnir.Store.Terens" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Statistikas" EntityType="FudbalskiTurnir.Store.Statistikas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SePrijavljujes" EntityType="FudbalskiTurnir.Store.SePrijavljujes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SeKvalifikujes" EntityType="FudbalskiTurnir.Store.SeKvalifikujes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ucesniks_Trener" EntityType="FudbalskiTurnir.Store.Ucesniks_Trener" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ucesniks_Sudija" EntityType="FudbalskiTurnir.Store.Ucesniks_Sudija" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ucesniks_Igrac" EntityType="FudbalskiTurnir.Store.Ucesniks_Igrac" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SponzorTurnir" EntityType="FudbalskiTurnir.Store.SponzorTurnir" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SeKvalifikujeMec" EntityType="FudbalskiTurnir.Store.SeKvalifikujeMec" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IgracTim" EntityType="FudbalskiTurnir.Store.IgracTim" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="StatistikaMec" Association="FudbalskiTurnir.Store.StatistikaMec">
+      <End Role="Statistika" EntitySet="Statistikas" />
+      <End Role="Mec" EntitySet="Mecs" />
+    </AssociationSet>
+    <AssociationSet Name="TrenerTim" Association="FudbalskiTurnir.Store.TrenerTim">
+      <End Role="Trener" EntitySet="Ucesniks_Trener" />
+      <End Role="Tim" EntitySet="Tims" />
+    </AssociationSet>
+    <AssociationSet Name="MecTeren" Association="FudbalskiTurnir.Store.MecTeren">
+      <End Role="Mec" EntitySet="Mecs" />
+      <End Role="Teren" EntitySet="Terens" />
+    </AssociationSet>
+    <AssociationSet Name="SePrijavljujeTurnir" Association="FudbalskiTurnir.Store.SePrijavljujeTurnir">
+      <End Role="SePrijavljuje" EntitySet="SePrijavljujes" />
+      <End Role="Turnir" EntitySet="Turnirs" />
+    </AssociationSet>
+    <AssociationSet Name="TurnirSeKvalifikuje" Association="FudbalskiTurnir.Store.TurnirSeKvalifikuje">
+      <End Role="Turnir" EntitySet="Turnirs" />
+      <End Role="SeKvalifikuje" EntitySet="SeKvalifikujes" />
+    </AssociationSet>
+    <AssociationSet Name="TimSeKvalifikuje" Association="FudbalskiTurnir.Store.TimSeKvalifikuje">
+      <End Role="Tim" EntitySet="Tims" />
+      <End Role="SeKvalifikuje" EntitySet="SeKvalifikujes" />
+    </AssociationSet>
+    <AssociationSet Name="SudijaSePrijavljuje" Association="FudbalskiTurnir.Store.SudijaSePrijavljuje">
+      <End Role="Sudija" EntitySet="Ucesniks_Sudija" />
+      <End Role="SePrijavljuje" EntitySet="SePrijavljujes" />
+    </AssociationSet>
+    <AssociationSet Name="SePrijavljujeMec" Association="FudbalskiTurnir.Store.SePrijavljujeMec">
+      <End Role="SePrijavljuje" EntitySet="SePrijavljujes" />
+      <End Role="Mec" EntitySet="Mecs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SponzorTurnir_Sponzor" Association="FudbalskiTurnir.Store.FK_SponzorTurnir_Sponzor">
+      <End Role="Sponzor" EntitySet="Sponzors" />
+      <End Role="SponzorTurnir" EntitySet="SponzorTurnir" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SponzorTurnir_Turnir" Association="FudbalskiTurnir.Store.FK_SponzorTurnir_Turnir">
+      <End Role="Turnir" EntitySet="Turnirs" />
+      <End Role="SponzorTurnir" EntitySet="SponzorTurnir" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SeKvalifikujeMec_SeKvalifikuje" Association="FudbalskiTurnir.Store.FK_SeKvalifikujeMec_SeKvalifikuje">
+      <End Role="SeKvalifikuje" EntitySet="SeKvalifikujes" />
+      <End Role="SeKvalifikujeMec" EntitySet="SeKvalifikujeMec" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SeKvalifikujeMec_Mec" Association="FudbalskiTurnir.Store.FK_SeKvalifikujeMec_Mec">
+      <End Role="Mec" EntitySet="Mecs" />
+      <End Role="SeKvalifikujeMec" EntitySet="SeKvalifikujeMec" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IgracTim_Igrac" Association="FudbalskiTurnir.Store.FK_IgracTim_Igrac">
+      <End Role="Igrac" EntitySet="Ucesniks_Igrac" />
+      <End Role="IgracTim" EntitySet="IgracTim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IgracTim_Tim" Association="FudbalskiTurnir.Store.FK_IgracTim_Tim">
+      <End Role="Tim" EntitySet="Tims" />
+      <End Role="IgracTim" EntitySet="IgracTim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trener_inherits_Ucesnik" Association="FudbalskiTurnir.Store.FK_Trener_inherits_Ucesnik">
+      <End Role="Ucesnik" EntitySet="Ucesniks" />
+      <End Role="Trener" EntitySet="Ucesniks_Trener" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sudija_inherits_Ucesnik" Association="FudbalskiTurnir.Store.FK_Sudija_inherits_Ucesnik">
+      <End Role="Ucesnik" EntitySet="Ucesniks" />
+      <End Role="Sudija" EntitySet="Ucesniks_Sudija" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Igrac_inherits_Ucesnik" Association="FudbalskiTurnir.Store.FK_Igrac_inherits_Ucesnik">
+      <End Role="Ucesnik" EntitySet="Ucesniks" />
+      <End Role="Igrac" EntitySet="Ucesniks_Igrac" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Ucesniks">
+    <Key>
+      <PropertyRef Name="JMBG" />
+    </Key>
+    <Property Name="JMBG" Type="bigint" Nullable="false" />
+    <Property Name="DatumRodjenja" Type="datetime" Nullable="false" />
+    <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Drzava" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Zarada" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Tims">
+    <Key>
+      <PropertyRef Name="IdTima" />
+    </Key>
+    <Property Name="IdTima" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BrojTitula" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tip" Type="int" Nullable="false" />
+    <Property Name="DatumOsnivanja" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sponzors">
+    <Key>
+      <PropertyRef Name="IdSponzora" />
+    </Key>
+    <Property Name="IdSponzora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ulaganje" Type="int" Nullable="false" />
+    <Property Name="Sediste" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CEO" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Turnirs">
+    <Key>
+      <PropertyRef Name="IdTurnira" />
+    </Key>
+    <Property Name="IdTurnira" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tip" Type="int" Nullable="false" />
+    <Property Name="TrenutniSampion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DatumOsnivanja" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mecs">
+    <Key>
+      <PropertyRef Name="IdMeca" />
+    </Key>
+    <Property Name="IdMeca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DatumOdrzavanja" Type="datetime" Nullable="false" />
+    <Property Name="Kolo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rezultat" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StatistikaIdStatistike" Type="int" Nullable="false" />
+    <Property Name="TerenIdTerena" Type="int" Nullable="true" />
+    <Property Name="SePrijavljujeTurnirIdTurnira" Type="int" Nullable="false" />
+    <Property Name="SePrijavljujeSudijaJMBG" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Terens">
+    <Key>
+      <PropertyRef Name="IdTerena" />
+    </Key>
+    <Property Name="IdTerena" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DatumOsnivanja" Type="datetime" Nullable="false" />
+    <Property Name="Mesto" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BrojGledalaca" Type="int" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Statistikas">
+    <Key>
+      <PropertyRef Name="IdStatistike" />
+    </Key>
+    <Property Name="IdStatistike" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Golovi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Kartoni" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Asistencije" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SePrijavljujes">
+    <Key>
+      <PropertyRef Name="TurnirIdTurnira" />
+      <PropertyRef Name="SudijaJMBG" />
+    </Key>
+    <Property Name="TurnirIdTurnira" Type="int" Nullable="false" />
+    <Property Name="SudijaJMBG" Type="bigint" Nullable="false" />
+    <Property Name="Turnir_IdTurnira" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SeKvalifikujes">
+    <Key>
+      <PropertyRef Name="TurnirIdTurnira" />
+      <PropertyRef Name="TimIdTima" />
+    </Key>
+    <Property Name="TurnirIdTurnira" Type="int" Nullable="false" />
+    <Property Name="TimIdTima" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ucesniks_Trener">
+    <Key>
+      <PropertyRef Name="JMBG" />
+    </Key>
+    <Property Name="Tip" Type="int" Nullable="false" />
+    <Property Name="BrojOsvojenihTitula" Type="int" Nullable="false" />
+    <Property Name="TimIdTima" Type="int" Nullable="true" />
+    <Property Name="JMBG" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ucesniks_Sudija">
+    <Key>
+      <PropertyRef Name="JMBG" />
+    </Key>
+    <Property Name="BrojUtakmica" Type="int" Nullable="false" />
+    <Property Name="Tip" Type="int" Nullable="false" />
+    <Property Name="JMBG" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ucesniks_Igrac">
+    <Key>
+      <PropertyRef Name="JMBG" />
+    </Key>
+    <Property Name="Pozicija" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BrojGolova" Type="int" Nullable="false" />
+    <Property Name="Visina" Type="int" Nullable="false" />
+    <Property Name="JMBG" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SponzorTurnir">
+    <Key>
+      <PropertyRef Name="Sponzors_IdSponzora" />
+      <PropertyRef Name="Turnirs_IdTurnira" />
+    </Key>
+    <Property Name="Sponzors_IdSponzora" Type="int" Nullable="false" />
+    <Property Name="Turnirs_IdTurnira" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SeKvalifikujeMec">
+    <Key>
+      <PropertyRef Name="SeKvalifikujes_TurnirIdTurnira" />
+      <PropertyRef Name="SeKvalifikujes_TimIdTima" />
+      <PropertyRef Name="Mecs_IdMeca" />
+    </Key>
+    <Property Name="SeKvalifikujes_TurnirIdTurnira" Type="int" Nullable="false" />
+    <Property Name="SeKvalifikujes_TimIdTima" Type="int" Nullable="false" />
+    <Property Name="Mecs_IdMeca" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IgracTim">
+    <Key>
+      <PropertyRef Name="Igracs_JMBG" />
+      <PropertyRef Name="Tims_IdTima" />
+    </Key>
+    <Property Name="Igracs_JMBG" Type="bigint" Nullable="false" />
+    <Property Name="Tims_IdTima" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="StatistikaMec">
+    <End Role="Statistika" Type="FudbalskiTurnir.Store.Statistikas" Multiplicity="1" />
+    <End Role="Mec" Type="FudbalskiTurnir.Store.Mecs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statistika">
+        <PropertyRef Name="IdStatistike" />
+      </Principal>
+      <Dependent Role="Mec">
+        <PropertyRef Name="StatistikaIdStatistike" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrenerTim">
+    <End Role="Trener" Type="FudbalskiTurnir.Store.Ucesniks_Trener" Multiplicity="*" />
+    <End Role="Tim" Type="FudbalskiTurnir.Store.Tims" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Tim">
+        <PropertyRef Name="IdTima" />
+      </Principal>
+      <Dependent Role="Trener">
+        <PropertyRef Name="TimIdTima" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MecTeren">
+    <End Role="Mec" Type="FudbalskiTurnir.Store.Mecs" Multiplicity="*" />
+    <End Role="Teren" Type="FudbalskiTurnir.Store.Terens" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Teren">
+        <PropertyRef Name="IdTerena" />
+      </Principal>
+      <Dependent Role="Mec">
+        <PropertyRef Name="TerenIdTerena" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SePrijavljujeTurnir">
+    <End Role="SePrijavljuje" Type="FudbalskiTurnir.Store.SePrijavljujes" Multiplicity="*" />
+    <End Role="Turnir" Type="FudbalskiTurnir.Store.Turnirs" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Turnir">
+        <PropertyRef Name="IdTurnira" />
+      </Principal>
+      <Dependent Role="SePrijavljuje">
+        <PropertyRef Name="Turnir_IdTurnira" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TurnirSeKvalifikuje">
+    <End Role="Turnir" Type="FudbalskiTurnir.Store.Turnirs" Multiplicity="1" />
+    <End Role="SeKvalifikuje" Type="FudbalskiTurnir.Store.SeKvalifikujes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Turnir">
+        <PropertyRef Name="IdTurnira" />
+      </Principal>
+      <Dependent Role="SeKvalifikuje">
+        <PropertyRef Name="TurnirIdTurnira" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimSeKvalifikuje">
+    <End Role="Tim" Type="FudbalskiTurnir.Store.Tims" Multiplicity="1" />
+    <End Role="SeKvalifikuje" Type="FudbalskiTurnir.Store.SeKvalifikujes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tim">
+        <PropertyRef Name="IdTima" />
+      </Principal>
+      <Dependent Role="SeKvalifikuje">
+        <PropertyRef Name="TimIdTima" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SudijaSePrijavljuje">
+    <End Role="Sudija" Type="FudbalskiTurnir.Store.Ucesniks_Sudija" Multiplicity="1" />
+    <End Role="SePrijavljuje" Type="FudbalskiTurnir.Store.SePrijavljujes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sudija">
+        <PropertyRef Name="JMBG" />
+      </Principal>
+      <Dependent Role="SePrijavljuje">
+        <PropertyRef Name="SudijaJMBG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SePrijavljujeMec">
+    <End Role="SePrijavljuje" Type="FudbalskiTurnir.Store.SePrijavljujes" Multiplicity="1" />
+    <End Role="Mec" Type="FudbalskiTurnir.Store.Mecs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SePrijavljuje">
+        <PropertyRef Name="TurnirIdTurnira" />
+        <PropertyRef Name="SudijaJMBG" />
+      </Principal>
+      <Dependent Role="Mec">
+        <PropertyRef Name="SePrijavljujeTurnirIdTurnira" />
+        <PropertyRef Name="SePrijavljujeSudijaJMBG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SponzorTurnir_Sponzor">
+    <End Role="Sponzor" Type="FudbalskiTurnir.Store.Sponzors" Multiplicity="1" />
+    <End Role="SponzorTurnir" Type="FudbalskiTurnir.Store.SponzorTurnir" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sponzor">
+        <PropertyRef Name="IdSponzora" />
+      </Principal>
+      <Dependent Role="SponzorTurnir">
+        <PropertyRef Name="Sponzors_IdSponzora" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SponzorTurnir_Turnir">
+    <End Role="SponzorTurnir" Type="FudbalskiTurnir.Store.SponzorTurnir" Multiplicity="*" />
+    <End Role="Turnir" Type="FudbalskiTurnir.Store.Turnirs" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Turnir">
+        <PropertyRef Name="IdTurnira" />
+      </Principal>
+      <Dependent Role="SponzorTurnir">
+        <PropertyRef Name="Turnirs_IdTurnira" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SeKvalifikujeMec_SeKvalifikuje">
+    <End Role="SeKvalifikuje" Type="FudbalskiTurnir.Store.SeKvalifikujes" Multiplicity="1" />
+    <End Role="SeKvalifikujeMec" Type="FudbalskiTurnir.Store.SeKvalifikujeMec" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SeKvalifikuje">
+        <PropertyRef Name="TurnirIdTurnira" />
+        <PropertyRef Name="TimIdTima" />
+      </Principal>
+      <Dependent Role="SeKvalifikujeMec">
+        <PropertyRef Name="SeKvalifikujes_TurnirIdTurnira" />
+        <PropertyRef Name="SeKvalifikujes_TimIdTima" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SeKvalifikujeMec_Mec">
+    <End Role="SeKvalifikujeMec" Type="FudbalskiTurnir.Store.SeKvalifikujeMec" Multiplicity="*" />
+    <End Role="Mec" Type="FudbalskiTurnir.Store.Mecs" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Mec">
+        <PropertyRef Name="IdMeca" />
+      </Principal>
+      <Dependent Role="SeKvalifikujeMec">
+        <PropertyRef Name="Mecs_IdMeca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IgracTim_Igrac">
+    <End Role="Igrac" Type="FudbalskiTurnir.Store.Ucesniks_Igrac" Multiplicity="1" />
+    <End Role="IgracTim" Type="FudbalskiTurnir.Store.IgracTim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Igrac">
+        <PropertyRef Name="JMBG" />
+      </Principal>
+      <Dependent Role="IgracTim">
+        <PropertyRef Name="Igracs_JMBG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IgracTim_Tim">
+    <End Role="IgracTim" Type="FudbalskiTurnir.Store.IgracTim" Multiplicity="*" />
+    <End Role="Tim" Type="FudbalskiTurnir.Store.Tims" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Tim">
+        <PropertyRef Name="IdTima" />
+      </Principal>
+      <Dependent Role="IgracTim">
+        <PropertyRef Name="Tims_IdTima" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trener_inherits_Ucesnik">
+    <End Role="Ucesnik" Type="FudbalskiTurnir.Store.Ucesniks" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Trener" Type="FudbalskiTurnir.Store.Ucesniks_Trener" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Ucesnik">
+        <PropertyRef Name="JMBG" />
+      </Principal>
+      <Dependent Role="Trener">
+        <PropertyRef Name="JMBG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sudija_inherits_Ucesnik">
+    <End Role="Ucesnik" Type="FudbalskiTurnir.Store.Ucesniks" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sudija" Type="FudbalskiTurnir.Store.Ucesniks_Sudija" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Ucesnik">
+        <PropertyRef Name="JMBG" />
+      </Principal>
+      <Dependent Role="Sudija">
+        <PropertyRef Name="JMBG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Igrac_inherits_Ucesnik">
+    <End Role="Ucesnik" Type="FudbalskiTurnir.Store.Ucesniks" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Igrac" Type="FudbalskiTurnir.Store.Ucesniks_Igrac" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Ucesnik">
+        <PropertyRef Name="JMBG" />
+      </Principal>
+      <Dependent Role="Igrac">
+        <PropertyRef Name="JMBG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="FudbalskiTurnir" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="FudbalskiTurnirContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ucesniks" EntityType="FudbalskiTurnir.Ucesnik" />
+          <EntitySet Name="Tims" EntityType="FudbalskiTurnir.Tim" />
+          <EntitySet Name="Sponzors" EntityType="FudbalskiTurnir.Sponzor" />
+          <EntitySet Name="Turnirs" EntityType="FudbalskiTurnir.Turnir" />
+          <EntitySet Name="Mecs" EntityType="FudbalskiTurnir.Mec" />
+          <EntitySet Name="Terens" EntityType="FudbalskiTurnir.Teren" />
+          <EntitySet Name="Statistikas" EntityType="FudbalskiTurnir.Statistika" />
+          <EntitySet Name="SePrijavljujes" EntityType="FudbalskiTurnir.SePrijavljuje" />
+          <EntitySet Name="SeKvalifikujes" EntityType="FudbalskiTurnir.SeKvalifikuje" />
+          <AssociationSet Name="StatistikaMec" Association="FudbalskiTurnir.StatistikaMec">
+            <End Role="Statistika" EntitySet="Statistikas" />
+            <End Role="Mec" EntitySet="Mecs" />
+          </AssociationSet>
+          <AssociationSet Name="TrenerTim" Association="FudbalskiTurnir.TrenerTim">
+            <End Role="Trener" EntitySet="Ucesniks" />
+            <End Role="Tim" EntitySet="Tims" />
+          </AssociationSet>
+          <AssociationSet Name="MecTeren" Association="FudbalskiTurnir.MecTeren">
+            <End Role="Mec" EntitySet="Mecs" />
+            <End Role="Teren" EntitySet="Terens" />
+          </AssociationSet>
+          <AssociationSet Name="SePrijavljujeTurnir" Association="FudbalskiTurnir.SePrijavljujeTurnir">
+            <End Role="SePrijavljuje" EntitySet="SePrijavljujes" />
+            <End Role="Turnir" EntitySet="Turnirs" />
+          </AssociationSet>
+          <AssociationSet Name="TurnirSeKvalifikuje" Association="FudbalskiTurnir.TurnirSeKvalifikuje">
+            <End Role="Turnir" EntitySet="Turnirs" />
+            <End Role="SeKvalifikuje" EntitySet="SeKvalifikujes" />
+          </AssociationSet>
+          <AssociationSet Name="TimSeKvalifikuje" Association="FudbalskiTurnir.TimSeKvalifikuje">
+            <End Role="Tim" EntitySet="Tims" />
+            <End Role="SeKvalifikuje" EntitySet="SeKvalifikujes" />
+          </AssociationSet>
+          <AssociationSet Name="SudijaSePrijavljuje" Association="FudbalskiTurnir.SudijaSePrijavljuje">
+            <End Role="Sudija" EntitySet="Ucesniks" />
+            <End Role="SePrijavljuje" EntitySet="SePrijavljujes" />
+          </AssociationSet>
+          <AssociationSet Name="SePrijavljujeMec" Association="FudbalskiTurnir.SePrijavljujeMec">
+            <End Role="SePrijavljuje" EntitySet="SePrijavljujes" />
+            <End Role="Mec" EntitySet="Mecs" />
+          </AssociationSet>
+          <AssociationSet Name="SponzorTurnir" Association="FudbalskiTurnir.SponzorTurnir">
+            <End Role="Sponzor" EntitySet="Sponzors" />
+            <End Role="Turnir" EntitySet="Turnirs" />
+          </AssociationSet>
+          <AssociationSet Name="SeKvalifikujeMec" Association="FudbalskiTurnir.SeKvalifikujeMec">
+            <End Role="SeKvalifikuje" EntitySet="SeKvalifikujes" />
+            <End Role="Mec" EntitySet="Mecs" />
+          </AssociationSet>
+          <AssociationSet Name="IgracTim" Association="FudbalskiTurnir.IgracTim">
+            <End Role="Igrac" EntitySet="Ucesniks" />
+            <End Role="Tim" EntitySet="Tims" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Ucesnik">
+          <Key>
+            <PropertyRef Name="JMBG" />
+          </Key>
+          <Property Name="JMBG" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="DatumRodjenja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ime" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Prezime" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Drzava" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Zarada" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Trener" BaseType="FudbalskiTurnir.Ucesnik">
+          <Property Name="Tip" Type="FudbalskiTurnir.TipTrenera" Nullable="false" />
+          <Property Name="BrojOsvojenihTitula" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tim" Relationship="FudbalskiTurnir.TrenerTim" FromRole="Trener" ToRole="Tim" />
+          <Property Name="TimIdTima" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Igrac" BaseType="FudbalskiTurnir.Ucesnik">
+          <Property Name="Pozicija" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="BrojGolova" Type="Int32" Nullable="false" />
+          <Property Name="Visina" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tims" Relationship="FudbalskiTurnir.IgracTim" FromRole="Igrac" ToRole="Tim" />
+        </EntityType>
+        <EntityType Name="Tim">
+          <Key>
+            <PropertyRef Name="IdTima" />
+          </Key>
+          <Property Name="IdTima" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrojTitula" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Tip" Type="FudbalskiTurnir.TipTima" Nullable="false" />
+          <Property Name="DatumOsnivanja" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Treners" Relationship="FudbalskiTurnir.TrenerTim" FromRole="Tim" ToRole="Trener" />
+          <NavigationProperty Name="SeKvalifikujes" Relationship="FudbalskiTurnir.TimSeKvalifikuje" FromRole="Tim" ToRole="SeKvalifikuje" />
+          <NavigationProperty Name="Igracs" Relationship="FudbalskiTurnir.IgracTim" FromRole="Tim" ToRole="Igrac" />
+        </EntityType>
+        <EntityType Name="Sudija" BaseType="FudbalskiTurnir.Ucesnik">
+          <Property Name="BrojUtakmica" Type="Int32" Nullable="false" />
+          <Property Name="Tip" Type="FudbalskiTurnir.TipSudije" Nullable="false" />
+          <NavigationProperty Name="SePrijavljujes" Relationship="FudbalskiTurnir.SudijaSePrijavljuje" FromRole="Sudija" ToRole="SePrijavljuje" />
+        </EntityType>
+        <EntityType Name="Sponzor">
+          <Key>
+            <PropertyRef Name="IdSponzora" />
+          </Key>
+          <Property Name="IdSponzora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Ulaganje" Type="Int32" Nullable="false" />
+          <Property Name="Sediste" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CEO" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Turnirs" Relationship="FudbalskiTurnir.SponzorTurnir" FromRole="Sponzor" ToRole="Turnir" />
+        </EntityType>
+        <EntityType Name="Turnir">
+          <Key>
+            <PropertyRef Name="IdTurnira" />
+          </Key>
+          <Property Name="IdTurnira" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tip" Type="FudbalskiTurnir.TipTurnira" Nullable="false" />
+          <Property Name="TrenutniSampion" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DatumOsnivanja" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SePrijavljujes" Relationship="FudbalskiTurnir.SePrijavljujeTurnir" FromRole="Turnir" ToRole="SePrijavljuje" />
+          <NavigationProperty Name="SeKvalifikujes" Relationship="FudbalskiTurnir.TurnirSeKvalifikuje" FromRole="Turnir" ToRole="SeKvalifikuje" />
+          <NavigationProperty Name="Sponzors" Relationship="FudbalskiTurnir.SponzorTurnir" FromRole="Turnir" ToRole="Sponzor" />
+        </EntityType>
+        <EntityType Name="Mec">
+          <Key>
+            <PropertyRef Name="IdMeca" />
+          </Key>
+          <Property Name="IdMeca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DatumOdrzavanja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Kolo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Rezultat" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="StatistikaIdStatistike" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Statistika" Relationship="FudbalskiTurnir.StatistikaMec" FromRole="Mec" ToRole="Statistika" />
+          <NavigationProperty Name="Teren" Relationship="FudbalskiTurnir.MecTeren" FromRole="Mec" ToRole="Teren" />
+          <Property Name="TerenIdTerena" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="SePrijavljuje" Relationship="FudbalskiTurnir.SePrijavljujeMec" FromRole="Mec" ToRole="SePrijavljuje" />
+          <Property Name="SePrijavljujeTurnirIdTurnira" Type="Int32" Nullable="false" />
+          <Property Name="SePrijavljujeSudijaJMBG" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="SeKvalifikujes" Relationship="FudbalskiTurnir.SeKvalifikujeMec" FromRole="Mec" ToRole="SeKvalifikuje" />
+        </EntityType>
+        <EntityType Name="Teren">
+          <Key>
+            <PropertyRef Name="IdTerena" />
+          </Key>
+          <Property Name="IdTerena" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DatumOsnivanja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Mesto" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="BrojGledalaca" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Mecs" Relationship="FudbalskiTurnir.MecTeren" FromRole="Teren" ToRole="Mec" />
+        </EntityType>
+        <EntityType Name="Statistika">
+          <Key>
+            <PropertyRef Name="IdStatistike" />
+          </Key>
+          <Property Name="IdStatistike" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Golovi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Kartoni" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Asistencije" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Mecs" Relationship="FudbalskiTurnir.StatistikaMec" FromRole="Statistika" ToRole="Mec" />
+        </EntityType>
+        <EntityType Name="SePrijavljuje">
+          <Key>
+            <PropertyRef Name="TurnirIdTurnira" />
+            <PropertyRef Name="SudijaJMBG" />
+          </Key>
+          <Property Name="TurnirIdTurnira" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Turnir" Relationship="FudbalskiTurnir.SePrijavljujeTurnir" FromRole="SePrijavljuje" ToRole="Turnir" />
+          <NavigationProperty Name="Sudija" Relationship="FudbalskiTurnir.SudijaSePrijavljuje" FromRole="SePrijavljuje" ToRole="Sudija" />
+          <Property Name="SudijaJMBG" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Mecs" Relationship="FudbalskiTurnir.SePrijavljujeMec" FromRole="SePrijavljuje" ToRole="Mec" />
+        </EntityType>
+        <EntityType Name="SeKvalifikuje">
+          <Key>
+            <PropertyRef Name="TurnirIdTurnira" />
+            <PropertyRef Name="TimIdTima" />
+          </Key>
+          <NavigationProperty Name="Turnir" Relationship="FudbalskiTurnir.TurnirSeKvalifikuje" FromRole="SeKvalifikuje" ToRole="Turnir" />
+          <Property Name="TurnirIdTurnira" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tim" Relationship="FudbalskiTurnir.TimSeKvalifikuje" FromRole="SeKvalifikuje" ToRole="Tim" />
+          <Property Name="TimIdTima" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Mecs" Relationship="FudbalskiTurnir.SeKvalifikujeMec" FromRole="SeKvalifikuje" ToRole="Mec" />
+        </EntityType>
+        <Association Name="StatistikaMec">
+          <End Type="FudbalskiTurnir.Statistika" Role="Statistika" Multiplicity="1" />
+          <End Type="FudbalskiTurnir.Mec" Role="Mec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statistika">
+              <PropertyRef Name="IdStatistike" />
+            </Principal>
+            <Dependent Role="Mec">
+              <PropertyRef Name="StatistikaIdStatistike" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="TipSudije">
+          <Member Name="Pomocni" Value="0" />
+          <Member Name="Glavni" Value="1" />
+          <Member Name="Linijski" Value="2" />
+        </EnumType>
+        <EnumType Name="TipTrenera">
+          <Member Name="Selekto" Value="0" />
+          <Member Name="Kondicioni" Value="1" />
+          <Member Name="Pomocni" Value="2" />
+        </EnumType>
+        <EnumType Name="TipTima">
+          <Member Name="Drzava" Value="0" />
+          <Member Name="Klub" Value="1" />
+        </EnumType>
+        <EnumType Name="TipTurnira">
+          <Member Name="Klub" Value="0" />
+          <Member Name="Drzava" Value="1" />
+        </EnumType>
+        <Association Name="TrenerTim">
+          <End Type="FudbalskiTurnir.Trener" Role="Trener" Multiplicity="*" />
+          <End Type="FudbalskiTurnir.Tim" Role="Tim" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Tim">
+              <PropertyRef Name="IdTima" />
+            </Principal>
+            <Dependent Role="Trener">
+              <PropertyRef Name="TimIdTima" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MecTeren">
+          <End Type="FudbalskiTurnir.Mec" Role="Mec" Multiplicity="*" />
+          <End Type="FudbalskiTurnir.Teren" Role="Teren" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Teren">
+              <PropertyRef Name="IdTerena" />
+            </Principal>
+            <Dependent Role="Mec">
+              <PropertyRef Name="TerenIdTerena" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SePrijavljujeTurnir">
+          <End Type="FudbalskiTurnir.SePrijavljuje" Role="SePrijavljuje" Multiplicity="*" />
+          <End Type="FudbalskiTurnir.Turnir" Role="Turnir" Multiplicity="1" />
+        </Association>
+        <Association Name="TurnirSeKvalifikuje">
+          <End Type="FudbalskiTurnir.Turnir" Role="Turnir" Multiplicity="1" />
+          <End Type="FudbalskiTurnir.SeKvalifikuje" Role="SeKvalifikuje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turnir">
+              <PropertyRef Name="IdTurnira" />
+            </Principal>
+            <Dependent Role="SeKvalifikuje">
+              <PropertyRef Name="TurnirIdTurnira" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TimSeKvalifikuje">
+          <End Type="FudbalskiTurnir.Tim" Role="Tim" Multiplicity="1" />
+          <End Type="FudbalskiTurnir.SeKvalifikuje" Role="SeKvalifikuje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tim">
+              <PropertyRef Name="IdTima" />
+            </Principal>
+            <Dependent Role="SeKvalifikuje">
+              <PropertyRef Name="TimIdTima" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SudijaSePrijavljuje">
+          <End Type="FudbalskiTurnir.Sudija" Role="Sudija" Multiplicity="1" />
+          <End Type="FudbalskiTurnir.SePrijavljuje" Role="SePrijavljuje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sudija">
+              <PropertyRef Name="JMBG" />
+            </Principal>
+            <Dependent Role="SePrijavljuje">
+              <PropertyRef Name="SudijaJMBG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SePrijavljujeMec">
+          <End Type="FudbalskiTurnir.SePrijavljuje" Role="SePrijavljuje" Multiplicity="1" />
+          <End Type="FudbalskiTurnir.Mec" Role="Mec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SePrijavljuje">
+              <PropertyRef Name="TurnirIdTurnira" />
+              <PropertyRef Name="SudijaJMBG" />
+            </Principal>
+            <Dependent Role="Mec">
+              <PropertyRef Name="SePrijavljujeTurnirIdTurnira" />
+              <PropertyRef Name="SePrijavljujeSudijaJMBG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SponzorTurnir">
+          <End Type="FudbalskiTurnir.Sponzor" Role="Sponzor" Multiplicity="*" />
+          <End Type="FudbalskiTurnir.Turnir" Role="Turnir" Multiplicity="*" />
+        </Association>
+        <Association Name="SeKvalifikujeMec">
+          <End Type="FudbalskiTurnir.SeKvalifikuje" Role="SeKvalifikuje" Multiplicity="*" />
+          <End Type="FudbalskiTurnir.Mec" Role="Mec" Multiplicity="*" />
+        </Association>
+        <Association Name="IgracTim">
+          <End Type="FudbalskiTurnir.Igrac" Role="Igrac" Multiplicity="*" />
+          <End Type="FudbalskiTurnir.Tim" Role="Tim" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FudbalskiTurnirStoreContainer" CdmEntityContainer="FudbalskiTurnirContainer">
+    <EntitySetMapping Name="Ucesniks">
+      <EntityTypeMapping TypeName="IsTypeOf(FudbalskiTurnir.Ucesnik)">
+        <MappingFragment StoreEntitySet="Ucesniks">
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="DatumRodjenja" ColumnName="DatumRodjenja" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+          <ScalarProperty Name="Zarada" ColumnName="Zarada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(FudbalskiTurnir.Trener)">
+        <MappingFragment StoreEntitySet="Ucesniks_Trener">
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+          <ScalarProperty Name="BrojOsvojenihTitula" ColumnName="BrojOsvojenihTitula" />
+          <ScalarProperty Name="TimIdTima" ColumnName="TimIdTima" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(FudbalskiTurnir.Sudija)">
+        <MappingFragment StoreEntitySet="Ucesniks_Sudija">
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="BrojUtakmica" ColumnName="BrojUtakmica" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(FudbalskiTurnir.Igrac)">
+        <MappingFragment StoreEntitySet="Ucesniks_Igrac">
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="Pozicija" ColumnName="Pozicija" />
+          <ScalarProperty Name="BrojGolova" ColumnName="BrojGolova" />
+          <ScalarProperty Name="Visina" ColumnName="Visina" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tims">
+      <EntityTypeMapping TypeName="IsTypeOf(FudbalskiTurnir.Tim)">
+        <MappingFragment StoreEntitySet="Tims">
+          <ScalarProperty Name="IdTima" ColumnName="IdTima" />
+          <ScalarProperty Name="BrojTitula" ColumnName="BrojTitula" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+          <ScalarProperty Name="DatumOsnivanja" ColumnName="DatumOsnivanja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sponzors">
+      <EntityTypeMapping TypeName="IsTypeOf(FudbalskiTurnir.Sponzor)">
+        <MappingFragment StoreEntitySet="Sponzors">
+          <ScalarProperty Name="IdSponzora" ColumnName="IdSponzora" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Ulaganje" ColumnName="Ulaganje" />
+          <ScalarProperty Name="Sediste" ColumnName="Sediste" />
+          <ScalarProperty Name="CEO" ColumnName="CEO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Turnirs">
+      <EntityTypeMapping TypeName="IsTypeOf(FudbalskiTurnir.Turnir)">
+        <MappingFragment StoreEntitySet="Turnirs">
+          <ScalarProperty Name="IdTurnira" ColumnName="IdTurnira" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
+          <ScalarProperty Name="TrenutniSampion" ColumnName="TrenutniSampion" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="DatumOsnivanja" ColumnName="DatumOsnivanja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mecs">
+      <EntityTypeMapping TypeName="IsTypeOf(FudbalskiTurnir.Mec)">
+        <MappingFragment StoreEntitySet="Mecs">
+          <ScalarProperty Name="IdMeca" ColumnName="IdMeca" />
+          <ScalarProperty Name="DatumOdrzavanja" ColumnName="DatumOdrzavanja" />
+          <ScalarProperty Name="Kolo" ColumnName="Kolo" />
+          <ScalarProperty Name="Rezultat" ColumnName="Rezultat" />
+          <ScalarProperty Name="StatistikaIdStatistike" ColumnName="StatistikaIdStatistike" />
+          <ScalarProperty Name="TerenIdTerena" ColumnName="TerenIdTerena" />
+          <ScalarProperty Name="SePrijavljujeTurnirIdTurnira" ColumnName="SePrijavljujeTurnirIdTurnira" />
+          <ScalarProperty Name="SePrijavljujeSudijaJMBG" ColumnName="SePrijavljujeSudijaJMBG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Terens">
+      <EntityTypeMapping TypeName="IsTypeOf(FudbalskiTurnir.Teren)">
+        <MappingFragment StoreEntitySet="Terens">
+          <ScalarProperty Name="IdTerena" ColumnName="IdTerena" />
+          <ScalarProperty Name="DatumOsnivanja" ColumnName="DatumOsnivanja" />
+          <ScalarProperty Name="Mesto" ColumnName="Mesto" />
+          <ScalarProperty Name="BrojGledalaca" ColumnName="BrojGledalaca" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statistikas">
+      <EntityTypeMapping TypeName="IsTypeOf(FudbalskiTurnir.Statistika)">
+        <MappingFragment StoreEntitySet="Statistikas">
+          <ScalarProperty Name="IdStatistike" ColumnName="IdStatistike" />
+          <ScalarProperty Name="Golovi" ColumnName="Golovi" />
+          <ScalarProperty Name="Kartoni" ColumnName="Kartoni" />
+          <ScalarProperty Name="Asistencije" ColumnName="Asistencije" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SePrijavljujes">
+      <EntityTypeMapping TypeName="IsTypeOf(FudbalskiTurnir.SePrijavljuje)">
+        <MappingFragment StoreEntitySet="SePrijavljujes">
+          <ScalarProperty Name="TurnirIdTurnira" ColumnName="TurnirIdTurnira" />
+          <ScalarProperty Name="SudijaJMBG" ColumnName="SudijaJMBG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SeKvalifikujes">
+      <EntityTypeMapping TypeName="IsTypeOf(FudbalskiTurnir.SeKvalifikuje)">
+        <MappingFragment StoreEntitySet="SeKvalifikujes">
+          <ScalarProperty Name="TurnirIdTurnira" ColumnName="TurnirIdTurnira" />
+          <ScalarProperty Name="TimIdTima" ColumnName="TimIdTima" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="SePrijavljujeTurnir" TypeName="FudbalskiTurnir.SePrijavljujeTurnir" StoreEntitySet="SePrijavljujes">
+      <EndProperty Name="Turnir">
+        <ScalarProperty Name="IdTurnira" ColumnName="Turnir_IdTurnira" />
+      </EndProperty>
+      <EndProperty Name="SePrijavljuje">
+        <ScalarProperty Name="TurnirIdTurnira" ColumnName="TurnirIdTurnira" />
+        <ScalarProperty Name="SudijaJMBG" ColumnName="SudijaJMBG" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SponzorTurnir" TypeName="FudbalskiTurnir.SponzorTurnir" StoreEntitySet="SponzorTurnir">
+      <EndProperty Name="Sponzor">
+        <ScalarProperty Name="IdSponzora" ColumnName="Sponzors_IdSponzora" />
+      </EndProperty>
+      <EndProperty Name="Turnir">
+        <ScalarProperty Name="IdTurnira" ColumnName="Turnirs_IdTurnira" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SeKvalifikujeMec" TypeName="FudbalskiTurnir.SeKvalifikujeMec" StoreEntitySet="SeKvalifikujeMec">
+      <EndProperty Name="SeKvalifikuje">
+        <ScalarProperty Name="TurnirIdTurnira" ColumnName="SeKvalifikujes_TurnirIdTurnira" />
+        <ScalarProperty Name="TimIdTima" ColumnName="SeKvalifikujes_TimIdTima" />
+      </EndProperty>
+      <EndProperty Name="Mec">
+        <ScalarProperty Name="IdMeca" ColumnName="Mecs_IdMeca" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="IgracTim" TypeName="FudbalskiTurnir.IgracTim" StoreEntitySet="IgracTim">
+      <EndProperty Name="Igrac">
+        <ScalarProperty Name="JMBG" ColumnName="Igracs_JMBG" />
+      </EndProperty>
+      <EndProperty Name="Tim">
+        <ScalarProperty Name="IdTima" ColumnName="Tims_IdTima" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
