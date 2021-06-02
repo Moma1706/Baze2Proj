@@ -112,6 +112,7 @@
                     </ScrollViewer>
                 </Grid>
             </GroupBox>
+            <TextBlock Text="Timovi:" />
             <GroupBox>
                 <Grid>
                     <ScrollViewer>
